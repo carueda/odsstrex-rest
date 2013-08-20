@@ -238,11 +238,6 @@ class PlanningServlet extends PlanningServiceStack with Logging {
     Map("sections" -> sections, "events" -> events)
   }
 
-   // needed when deployed as a war
-  get("/") {
-    redirect("/index5.html")
-  }
-
 }
 
 object TokenData {
