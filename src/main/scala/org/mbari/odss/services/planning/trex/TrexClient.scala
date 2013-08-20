@@ -19,19 +19,22 @@ private case class TimelineWithJsonTokens(name: String,
 /**
  * Client to the T-REX endpoint.
  *
- * @param baseRest   Base URL for the endpoint
+ * @param endpoint   Base URL for the endpoint.
  */
-class TrexClient(baseRest: String = "http://threadfish.shore.mbari.org:2222/rest/") extends AnyRef with Logging {
+class TrexClient(endpoint: String) extends AnyRef with Logging {
+
+  private[this] val baseRest = if (endpoint.endsWith("/")) endpoint else endpoint + "/"
+  logger.info(s"baseRest: $baseRest")
 
   implicit val formats = DefaultFormats // Brings in default date formats etc.
 
   object read {
     object Tick extends (client.Response => Tick) {
-      def apply(r: client.Response) = ((as.String andThen (parse(_)))(r)).extract[Tick]
+      def apply(r: client.Response) = (as.String andThen (parse(_)))(r).extract[Tick]
     }
 
     object TickRate extends (client.Response => TickRate) {
-      def apply(r: client.Response) = ((as.String andThen (parse(_)))(r)).extract[TickRate]
+      def apply(r: client.Response) = (as.String andThen (parse(_)))(r).extract[TickRate]
     }
 
     object Json extends (client.Response => JValue) {

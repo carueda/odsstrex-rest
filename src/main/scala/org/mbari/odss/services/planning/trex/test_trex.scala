@@ -4,7 +4,7 @@ import org.joda.time.DateTime
 
 object test_trex extends App {
 
-  val trex = new TrexClient()
+  val trex = new TrexClient("http://threadfish.shore.mbari.org:2222/rest/")
 
   println("version = " + trex.version)
   println(prettyFormat(trex.help))

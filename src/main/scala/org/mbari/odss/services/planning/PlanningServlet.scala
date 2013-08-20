@@ -12,10 +12,7 @@ import org.mbari.odss.services.planning.trex.{VarItem, TrexClient}
  * The service that supports the Autonomy UI planning component.
  *
  */
-class PlanningServlet extends PlanningServiceStack with Logging {
-
-  private val trex = new TrexClient()
-
+class PlanningServlet(trex: TrexClient) extends PlanningServiceStack with Logging {
 
   //////////////////////////////////////////////////////////////
   // timelines
