@@ -1,0 +1,9 @@
+#
+# Template to create /etc/odsstrex.conf, which is used by the application to
+# read the configuration.
+# Edit web.xml if you want to indicate a different location for the configuration file.
+#
+
+trex {
+  endpoint = <T-REX REST endpoint URL>
+}

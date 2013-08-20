@@ -1,0 +1,9 @@
+<Goal on="drifterFollow" predicate="DrifterFollow.Survey">
+  <Assert name="centerLat"><value type="LATITUDE" name="36.765515" /></Assert>
+  <Assert name="centerLon"><value type="LONGITUDE" name="-121.86812" /></Assert>
+  <Assert name="path"><object value="chaffey" /></Assert>
+  <Assert name="size"><value type="float" name="1000" /></Assert>
+  <Assert name="lagrangian"><value type="bool" name="true" /></Assert>
+  <Assert name="speedNorth"><value type="float" name="-0.13296495" /></Assert>
+  <Assert name="speedEast"><value type="float" name="-0.37652363" /></Assert>
+</Goal>
