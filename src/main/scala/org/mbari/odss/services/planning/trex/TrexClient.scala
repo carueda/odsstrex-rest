@@ -139,9 +139,9 @@ class TrexClient(endpoint: String) extends AnyRef with Logging {
    * Note, this one returns a Future
    * @return a Future[x]
    */
-  def tickWait = {
+  def tickWait: Future[Tick] = {
     val svc = url(baseRest + "tick/wait")
-    val res = Http(svc OK read.TickRate)
+    val res = Http(svc OK read.Tick)
     res
   }
 

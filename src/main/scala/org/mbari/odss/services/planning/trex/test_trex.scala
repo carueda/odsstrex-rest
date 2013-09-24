@@ -19,11 +19,14 @@ object test_trex extends App {
   println("tickRate    = " + trex.tickRate)
 
 
-//  import ExecutionContext.Implicits.global
-//  val fut = trex.tickWait
-//  println("tickWait: waiting for response: " + fut.getClass)
-//  for (t <- fut)
-//    println("Got tickWait response: " +t)
+  import scala.concurrent.ExecutionContext.Implicits.global
+  val fut = trex.tickWait
+  val startTime = System.currentTimeMillis()
+  println("tickWait: waiting for response: " + fut.getClass)
+  for (t <- fut) {
+    val delay = System.currentTimeMillis() - startTime
+    println("Got tickWait response: " +t+ "  (took " + delay+ " ms)")
+  }
 
   println("timelines:")
   val timelines = trex.timelines
