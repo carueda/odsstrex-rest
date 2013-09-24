@@ -86,6 +86,10 @@ class PlanningServlet(trex: TrexClient) extends PlanningServiceStack with Loggin
     trex.tickRate
   }
 
+  get("/tick/next") {
+    trex.tickNext
+  }
+
 
   //////////////////////////////////////////////////////////////
   // tokens

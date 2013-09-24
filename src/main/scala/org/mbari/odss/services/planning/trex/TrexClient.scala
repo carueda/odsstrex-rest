@@ -120,7 +120,12 @@ class TrexClient(endpoint: String) extends AnyRef with Logging {
   private def _tick(sub: String = "") = {
     val svc = url(baseRest + "tick" + sub)
     val res = Http(svc OK read.Tick)
-    res()
+    val Tick(value, date) = res()
+
+    def fixUtc(str: String): String =
+      if (! (str endsWith "Z")) str + "Z" else str
+
+    Tick(value, fixUtc(date))
   }
 
   def tick        = _tick()
