@@ -158,7 +158,7 @@ class TrexClient(endpoint: String) extends AnyRef with Logging {
   }
 
   def timeline(name: String, from: Option[DateTime] = None, to: Option[DateTime] = None) = {
-    val svc = url(baseRest + "timeline/" + name)
+    val svc = url(baseRest + "timeline/" + name + "?format=tick&from=0")
   //val svc = url(baseRest + "timeline/" + name + "?from=2013-06-12T12:00+08:00")
     from foreach (f => svc.addQueryParameter("from", f.toString))
     to   foreach (t => svc.addQueryParameter("to",   t.toString))
