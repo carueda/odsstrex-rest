@@ -70,7 +70,10 @@ class PlanningServlet(trex: TrexClient) extends PlanningServiceStack with Loggin
       val status      = TokenStatus.Accepted.toString
       val tid         = newTid
 
-      Token(start, end, duration, text, section_id, status, tid)
+      val included = List("start", "end", "duration")
+      val otherVars: List[VarItem] = varItems filter (v => ! included.contains(v.name))
+
+      Token(start, end, duration, text, section_id, status, tid, otherVars)
 
     }
 
@@ -139,7 +142,7 @@ class PlanningServlet(trex: TrexClient) extends PlanningServiceStack with Loggin
     val end      = Some(TDate(min=Some(early_end),   max=Some(late_end)))
     val duration = Some(TDuration(Some("20:00"), None, None))
 
-    val goal = Token(start, end, duration, text, section, TokenStatus.Pending, newTid)
+    val goal = Token(start, end, duration, text, section, TokenStatus.Pending, newTid, List.empty)
 
     TokenData.all += goal
     logger.info(s"added goal token with tid=${goal.tid}")
@@ -196,7 +199,7 @@ class PlanningServlet(trex: TrexClient) extends PlanningServiceStack with Loggin
     val end      = Some(TDate(min=Some(early_end),   max=Some(late_end)))
     val duration = None
 
-    val goal = Token(start, end, duration, text, section, TokenStatus.NewSaved, newTid)
+    val goal = Token(start, end, duration, text, section, TokenStatus.NewSaved, newTid, List.empty)
 
     TokenData.all += goal
     logger.info(s"added draft: $goal")

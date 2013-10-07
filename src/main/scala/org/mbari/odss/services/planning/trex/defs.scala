@@ -45,7 +45,7 @@ case class Timeline(name: String,
 //case class VarDur(  name: String, duration: Map[String, Any]) extends VarItem
 //case object VarNull extends VarItem
 
-case class VarItem(name: String, type_ : String, map: Map[String, String]) extends BaseObject
+case class VarItem(name: String, `type` : String, map: Map[String, String]) extends BaseObject
 
 case class GoalEntry(id: String, href: String, on: String, pred: String, Variable: List[VarItem]) extends BaseObject
 

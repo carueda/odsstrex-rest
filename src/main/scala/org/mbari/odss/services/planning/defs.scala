@@ -1,6 +1,8 @@
 package org.mbari.odss.services.planning
 
 import scala.collection.mutable
+import scala.List
+import org.mbari.odss.services.planning.trex.VarItem
 
 
 sealed abstract class BaseObject
@@ -24,7 +26,8 @@ case class Token(start:      Option[TDate],
                  text:       String,
                  section_id: String,
                  status:     String,
-                 tid:        String
+                 tid:        String,
+                 vars:       List[VarItem]
                 ) extends BaseObject
 
 //case class Token(early_start: String, late_start: String,
